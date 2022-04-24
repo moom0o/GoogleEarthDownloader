@@ -1,7 +1,7 @@
 //Link collector :) - Save links that can be used to download images to text file.
 const config = require('./config.json')
-let quality = config["quality"] // Set your quality, higher number will mean images are more zoomed in, thus using much more space. Math problem for amount of images is (quality^2)(quality^2)=number of 256x256 images
-// For example, using quality 3, you will have 81 256x256 pixel images total. (3^2)*(3^2)=81
+let quality = config["quality"] // Set your quality, higher number will mean images are more zoomed in, thus using much more space. Math problem for amount of images is (2^quality)(2^quality)=number of 256x256 images
+// For example, using quality 3, you will have 64 256x256 pixel images total. (2^3)*(2^3)=64
 
 
 let i = 1
@@ -15,5 +15,5 @@ for (i = 1; i <= getMax(quality); i++) {
 }
 
 function getMax(quality) {
-    return Math.pow(quality, 2);
+    return Math.pow(2, quality);
 }

@@ -1,1 +1,1 @@
-cat links.txt | parallel -j 8 --workdir $PWD --gnu "bash ./download.sh {}"
+cat links.txt | parallel -j 1 --workdir $PWD --gnu "bash ./download.sh {}"

@@ -5,12 +5,17 @@ let quality = config["quality"] // Set your quality, higher number will mean ima
 
 
 let i = 1
+let apiInt = 0
 for (i = 1; i <= getMax(quality); i++) {
     let ii = 1
     for (ii = 1; ii <= getMax(quality); ii++) {
         const fs = require('fs')
-        fs.appendFileSync("links.txt", `https://khms1.google.com/kh/v=923?x=${i}&y=${ii}&z=${quality}` + '\n');
+        fs.appendFileSync("links.txt", `https://khms${apiInt}.google.com/kh/v=923?x=${i}&y=${ii}&z=${quality}` + '\n');
         //console.log(`https://khms1.google.com/kh/{v=923?x=${i}&y=${ii}&z=${quality}}`)
+        apiInt++;
+        if(apiInt > 3){
+            apiInt = 0
+        }
     }
 }
 

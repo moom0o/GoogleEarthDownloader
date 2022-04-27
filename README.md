@@ -7,7 +7,7 @@ Please note this is a project meant for Educational and Archival purposes. I am 
 # Express Server
 The Express server is used for mimicking Google's actual API. It can be used in any kind of mapping software, one good example is OpenStreetMaps where it is possible to use the locally downloaded map data for viewing.
 # Config
-**Quality** - Set your quality, higher number will mean images are more zoomed in, thus using much more space. Math
+**Quality** - Set your quality, (1-21) higher number will mean images are more zoomed in, thus using much more space. Math
 problem for amount of images is (2^quality)(2^quality)=number of 256x256 images. For example, using quality 3, you will
 have 64 256x256 pixel images total. (2^3)*(2^3)=64
 

@@ -1,6 +1,8 @@
 # Here you start the script that will download links.txt links.
 # Sorry its kinda a mess ;)
-
+if test -z "$1"; then
+    echo "Missing variable, are you sure you want to use this script? Use start.sh instead"
+fi
 echo "$1"
 URL=$1
 X=${URL##*x=}

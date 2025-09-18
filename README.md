@@ -12,9 +12,6 @@ The Express server is used for mimicking Google's actual API. It can be used in 
 **Quality** - Set your quality, (1-21) higher number will mean images are more zoomed in, thus using much more space. Formula for amount of images is (2^quality)(2^quality)=number of 256x256 images. For example, using quality 3, you will
 have 64 256x256 pixel images total. (2^3)*(2^3)=64
 
-The other options are currently not implemented yet, and may never be. They were intended to be used if you only want a
-certain section of the world.
-
 # Tutorial
 * Clone the repo
 * Update config.json with your preferred quality, NOTE that exponentially more images must be downloaded for every increase in quality!

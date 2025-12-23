@@ -3,18 +3,12 @@
 if test -z "$1"; then
     echo "Missing variable, are you sure you want to use this script? Use start.sh instead"
 fi
-echo "$1"
 URL=$1
 X=${URL##*x=}
 XX=${X%&y=*}
 Y=${X##*y=}
 YY=${Y%&z=*}
 Z=${X##*&z=}
-echo "x"
-echo ${XX}
-echo "y"
-echo ${YY}
-echo ${Z}
 mkdir -p ./images
 mkdir -p ./images/${Z}
 mkdir -p ./images/${Z}/${XX}

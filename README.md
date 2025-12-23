@@ -1,10 +1,40 @@
 # GoogleEarthDownloader
+![Google Earth](https://img.shields.io/badge/Google_Earth-Data_Ingestion-blue?style=for-the-badge&logo=googleearth&logoColor=white)
+![NodeJS](https://img.shields.io/badge/Node.js-Link_Generation-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![GNU Parallel](https://img.shields.io/badge/CLI-GNU_Parallel-000000?style=for-the-badge&logo=gnu&logoColor=white)
+![Express](https://img.shields.io/badge/Express.js-Tile_Server-000000?style=for-the-badge&logo=express&logoColor=white)
+
 <img width="624" height="407" alt="image" src="https://github.com/user-attachments/assets/6574ad6a-b896-4beb-af65-24d0c5acd066" />
 
 Download the entirety of Google Earth, in your selected quality! Also run your own express server to host the images and use on other mapping platforms like openstreetmap!
 
-# Warning
-Please note this is a project meant for Educational and Archival purposes. I am not responsible for any of your actions. Web scraping is legal in the United States, according to https://www.courtlistener.com/opinion/6460342/hiq-labs-inc-v-linkedin-corporation. I am not responsible if this program is used in other countries, either on a personal computer or server located in other countries.
+```mermaid
+graph TD
+    %% --- Phase 1: Generation ---
+    subgraph "Phase 1: Target Generation"
+    Script[node index.js] -->|Generate Image URLs| List[list.txt]
+    end
+
+    %% --- Phase 2: Ingestion ---
+    subgraph "Phase 2: Parallel Ingestion"
+    List --> Bash[./start.sh]
+    
+    Bash -->|Spawn Workers| CURL1[cURL Worker 1]
+    Bash -->|Spawn Workers| CURL2[cURL Worker 2]
+    Bash -->|Spawn Workers| CURL3[cURL Worker 3]
+    
+    CURL1 & CURL2 & CURL3 --Download--> Cache[(Folder)]
+    end
+
+    %% --- Phase 3: Serving ---
+    subgraph "Phase 3: Local Tile Server"
+    Client[OpenStreetMaps / QGIS] -->|Request Tile| Server[node server.js]
+    Server -->|Read from Disk| Cache
+    Server -->|Serve Image| Client
+    end
+```
+
+> **Disclaimer:** This project is intended for **Educational and Archival purposes only**. Web scraping public data is generally protected in the United States (see *hiQ Labs, Inc. v. LinkedIn Corp*), but users are responsible for ensuring compliance with local laws and terms of service. The author assumes no liability for misuse.
 
 # Express Server
 The Express server is used for mimicking Google's actual API. It can be used in any kind of mapping software, one good example is OpenStreetMaps where it is possible to use the locally downloaded map data for viewing.
